@@ -38,22 +38,12 @@ BEGIN
         FROM 'C:\Users\THINKPAD\Desktop\SQL\SQL\sql-data-warehouse-project\datasets\source_crm\cust_info.csv'
         WITH (
             FIRSTROW = 2,
-            FIELDTERMINATOR = ',',  --  +-------------------+                       +---------------+
-            TABLOCK                 --  |   File Delimiter  |                       |   TRUNCATE    |
-        );                          --  +-------------------+-------------+         +---------------+-----------------------------------+
-                                    --  |           , ; | # "             |         |  Quickly delete all rows from a table, resetting  |
-                                    --  +---------------------------------+         |               it to an empty state                |
-                                    --                                              +---------------------------------------------------+
+            FIELDTERMINATOR = ',', 
+            TABLOCK               
+        );                       
         SET @end_time = GETDATE() 
         PRINT '>>> The Delay for loading  Table 1 is  ' + CAST (DATEDIFF(second,@end_time ,@start_time) AS NVARCHAR) + ' second'
         PRINT '>> ---------------------------------------------------------------'
-        /*
-                +----------------+
-                |  QUALITY CHECK |
-                +----------------+------------------------------------------------------+
-                |   Check that the data hase not shifted and is the correct columns     |
-                +-----------------------------------------------------------------------+
-        */
      
         -- Load Data table #2: 
         SET @start_time = GETDATE();
@@ -128,7 +118,6 @@ BEGIN
         SET @end_time = GETDATE() 
         PRINT '>>> The Delay for loading Table 5 is  ' + CAST (DATEDIFF(second,@end_time ,@start_time) AS NVARCHAR) + ' Second'
         PRINT '>> ---------------------------------------------------------------'
-
 
         -- Load Data table #6: 
         SET @start_time = GETDATE();
